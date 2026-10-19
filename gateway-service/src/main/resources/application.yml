@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: discovery-route
+              uri: http://localhost:8761
+              predicates:
+                - Path=/eureka-test/**
+              filters:
+                - 'RewritePath=/eureka-test/?(?<segment>.*), /$\{segment}'
+            - id: product-route
+              uri: lb://PRODUCT-SERVICE
+              predicates:
+                - Path=/products/**, /products
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
