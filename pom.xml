@@ -29,8 +29,7 @@
         <module>discovery-service</module>
         <module>gateway-service</module>
         <module>product-service</module>
-
-
+        <module>inventory-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
